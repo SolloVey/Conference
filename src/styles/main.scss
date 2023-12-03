@@ -800,12 +800,15 @@ body {
 	}
 
 	&__arrow {
+		position: relative;
+		top: 0px;
 		display: block;
 		margin: 0 auto;
 		width: 8.7rem;
 		height: 3rem;
 		background-image: url('../images/main/svg/arrow.svg');
 		cursor: pointer;
+		animation: arrowMovement 1.6s infinite ease-out;
 	}
 }
 
@@ -1166,5 +1169,18 @@ body {
 	&__legal-information {
 		font-size: clamp(1.6rem, 1.53rem + 0.35vw, 1.8rem);
 		text-decoration: underline !important;
+	}
+}
+
+// ANIMATIONS
+@keyframes arrowMovement {
+	0% {
+		opacity: 0;
+		top: 0px;
+	}
+
+	100% {
+		opacity: 1;
+		top: 30px;
 	}
 }

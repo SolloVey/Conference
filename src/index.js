@@ -48,6 +48,10 @@ const body = document.querySelector('body');
 const btnBurger = document.querySelector('.header__burger');
 const navList = document.querySelector('.nav');
 const navBtn = document.querySelector('.nav__btn');
+const arrowLink = document.querySelector('.promo__arrow');
+const elementDateYear = document.querySelector('.logo-text__date');
+const date = new Date().toISOString();
+const currentDate = getDate(date);
 
 // Плавный переход к разделу по клику в меню
 if (linksMenu.length > 0) {
@@ -92,8 +96,21 @@ function closeBurgerMenu() {
 	}
 }
 
+// Динамическая дата
+function getDate(date) {
+	const year = new Date(date).getFullYear();
+	return {
+		year: year,
+	};
+}
+
+(function (year) {
+	elementDateYear.innerHTML = `${year}`;
+})(currentDate.year);
+
 // Вынос навигации слайдера за пределы контейнера Swiper
 swiperPrev.addEventListener('click', () => swiper.slidePrev());
 swiperNext.addEventListener('click', () => swiper.slideNext());
 btnBurger.addEventListener('click', showBurgerMenu);
 navBtn.addEventListener('click', onMenuLinkClick);
+arrowLink.addEventListener('click', onMenuLinkClick);
