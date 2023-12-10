@@ -52,6 +52,11 @@ const arrowLink = document.querySelector('.promo__arrow');
 const elementDateYear = document.querySelector('.logo-text__date');
 const date = new Date().toISOString();
 const currentDate = getDate(date);
+const form = document.querySelector('#form');
+const allFormInputs = document.querySelectorAll('.form__item');
+const inputName = document.querySelector('.form-name');
+const inputEmail = document.querySelector('.form-email');
+const inputText = document.querySelector('.form-text');
 
 // Плавный переход к разделу по клику в меню
 if (linksMenu.length > 0) {
@@ -66,7 +71,6 @@ function onMenuLinkClick(event) {
 	const linkMenu = event.target;
 	const gotoBlock = document.querySelector(linkMenu.dataset.goto);
 
-	// if (linkMenu.dataset.goto && gotoBlock) {
 	if (linkMenu.dataset && gotoBlock) {
 		const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY;
 
@@ -96,6 +100,12 @@ function closeBurgerMenu() {
 	}
 }
 
+function escapeDown(element) {
+	if (element.code == 'Escape') {
+		closeBurgerMenu();
+	}
+}
+
 // Динамическая дата
 function getDate(date) {
 	const year = new Date(date).getFullYear();
@@ -108,9 +118,106 @@ function getDate(date) {
 	elementDateYear.innerHTML = `${year}`;
 })(currentDate.year);
 
+// Валидация полей ввода формы
+class Request {
+	constructor(name, email, message) {
+		this.name = name;
+		this.email = email;
+		this.message = message;
+	}
+}
+
+function getFormInput() {
+	return new FormData(form);
+}
+
+function resetInputs() {
+	inputName.value = '';
+	inputEmail.value = '';
+	inputText.value = '';
+}
+
+function validateName(name) {
+	let regex = /[A-Za-zА-Яа-яЁё]/;
+
+	return regex.test(name);
+}
+
+function validateEmail(email) {
+	let regex =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	return regex.test(String(email).toLowerCase());
+}
+
+function validationForm() {
+	let result = true;
+	let nameValue = inputName.value;
+	let emailValue = inputEmail.value;
+
+	for (const input of allFormInputs) {
+		if (input.value === '') {
+			result = false;
+			input.classList.add('error');
+
+			console.log('ERROR');
+		} else {
+			input.classList.remove('error');
+		}
+	}
+
+	if (!validateName(nameValue)) {
+		console.log('Name not valid');
+		inputName.classList.add('error');
+		result = false;
+	} else {
+		inputName.classList.remove('error');
+	}
+
+	if (!validateEmail(emailValue)) {
+		console.log('Email not valid');
+		inputEmail.classList.add('error');
+		result = false;
+	} else {
+		inputEmail.classList.remove('error');
+	}
+
+	return result;
+}
+
+function requestJSON() {
+	let requestJSON;
+	let formData = getFormInput();
+
+	let request = new Request(
+		formData.get('name'),
+		formData.get('email'),
+		formData.get('message')
+	);
+
+	requestJSON = JSON.stringify(request);
+	console.log(requestJSON);
+}
+
+// Отправка формы
+function submitForm(e) {
+	e.preventDefault();
+
+	if (validationForm()) {
+		console.log('Form validate!');
+
+		requestJSON();
+		resetInputs();
+	} else {
+		console.log('Form NOT validate!');
+	}
+}
+
 // Вынос навигации слайдера за пределы контейнера Swiper
 swiperPrev.addEventListener('click', () => swiper.slidePrev());
 swiperNext.addEventListener('click', () => swiper.slideNext());
 btnBurger.addEventListener('click', showBurgerMenu);
 navBtn.addEventListener('click', onMenuLinkClick);
 arrowLink.addEventListener('click', onMenuLinkClick);
+document.addEventListener('keydown', escapeDown);
+form.addEventListener('submit', submitForm);

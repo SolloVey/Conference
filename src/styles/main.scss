@@ -354,18 +354,12 @@ body {
 		}
 	}
 
-	&__btn:hover {
-		color: $text-color;
-		background-color: $background-color;
-	}
-
 	&__btn:active {
 		border: 1px solid #a0caf5;
 	}
 
 	&.active {
 		transform: translate(0px, 0px);
-		// top: 0;
 	}
 }
 
@@ -1060,6 +1054,8 @@ body {
 		font-size: 1.8rem;
 		width: 100%;
 		padding: 1.5rem 0rem 1.3rem 1.9rem;
+		border: 0.3rem solid transparent;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		outline: none;
 
 		&::placeholder {
@@ -1133,6 +1129,10 @@ body {
 	}
 }
 
+.error {
+	border: 3px solid #FB5555;
+}
+
 //FOOTER
 .footer {
 	background-color: $background-color;
@@ -1182,5 +1182,13 @@ body {
 	100% {
 		opacity: 1;
 		top: 30px;
+	}
+}
+
+// HOVERS
+@media (hover: hover) {
+	.nav__btn:hover {
+		color: $text-color;
+		background-color: $background-color;
 	}
 }
