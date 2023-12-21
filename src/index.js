@@ -57,6 +57,13 @@ const allFormInputs = document.querySelectorAll('.form__item');
 const inputName = document.querySelector('.form-name');
 const inputEmail = document.querySelector('.form-email');
 const inputText = document.querySelector('.form-text');
+const popup = document.querySelector('.popup');
+// const popupContent = document.querySelector('.popup__content');
+// const closePopupBtn = document.querySelector('.popup__close');
+const popupInnerName = document.querySelector('.popup__inner__text_name');
+const popupInnerEmail = document.querySelector('.popup__inner__text_email');
+const popupInnerMessage = document.querySelector('.popup__inner__text_message');
+let data;
 
 // Плавный переход к разделу по клику в меню
 if (linksMenu.length > 0) {
@@ -103,6 +110,7 @@ function closeBurgerMenu() {
 function escapeDown(element) {
 	if (element.code == 'Escape') {
 		closeBurgerMenu();
+		styleNonePopup();
 	}
 }
 
@@ -185,7 +193,7 @@ function validationForm() {
 	return result;
 }
 
-function requestJSON() {
+function request() {
 	let requestJSON;
 	let formData = getFormInput();
 
@@ -196,7 +204,11 @@ function requestJSON() {
 	);
 
 	requestJSON = JSON.stringify(request);
+	data = request;
+
 	console.log(requestJSON);
+
+	return data;
 }
 
 // Отправка формы
@@ -206,10 +218,40 @@ function submitForm(e) {
 	if (validationForm()) {
 		console.log('Form validate!');
 
-		requestJSON();
+		request();
 		resetInputs();
+		// console.log(data.name);
+
+		showPopup();
 	} else {
 		console.log('Form NOT validate!');
+	}
+}
+
+// Popup
+function styleNonePopup() {
+	popup.style.display = 'none';
+	body.classList.remove('lock');
+}
+
+function showPopup() {
+	// popupInnerName.innerText = `Ваше имя: ${data.name}`;
+	popupInnerName.innerText = ` ${data.name}`;
+	// popupInnerEmail.innerText = `Ваш Email: ${data.email}`;
+	popupInnerEmail.innerText = ` ${data.email}`;
+	// popupInnerMessage.innerText = `Ваше сообщение: ${data.message}`;
+	popupInnerMessage.innerText = ` ${data.message}`;
+
+	popup.style.display = 'block';
+	body.classList.toggle('lock');
+}
+
+function closePopup(e) {
+	if (
+		e.target.classList.contains('popup') ||
+		e.target.classList.contains('popup__close')
+	) {
+		styleNonePopup();
 	}
 }
 
@@ -221,3 +263,4 @@ navBtn.addEventListener('click', onMenuLinkClick);
 arrowLink.addEventListener('click', onMenuLinkClick);
 document.addEventListener('keydown', escapeDown);
 form.addEventListener('submit', submitForm);
+window.addEventListener('click', closePopup);

@@ -35,9 +35,7 @@ body {
 	color: $text-color;
 
 	&.lock {
-		@media (max-width: $r_tab_900) {
-			overflow: hidden;
-		}
+		overflow: hidden;
 	}
 }
 
@@ -874,6 +872,7 @@ body {
 .swiper-slide {
 	width: 378px !important;
 	height: 379px !important;
+	border: 1px solid rgba(64, 64, 64, 0.1);
 
 	@media (max-width: $r_desk) {
 		width: 355px !important;
@@ -1169,6 +1168,99 @@ body {
 	&__legal-information {
 		font-size: clamp(1.6rem, 1.53rem + 0.35vw, 1.8rem);
 		text-decoration: underline !important;
+	}
+}
+
+// POPUP
+.popup {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow-y: auto;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 100;
+
+	&__body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__content {
+		width: 80%;
+		background-color: $text-color;
+		color: $background-color;
+		margin: 10% auto;
+		padding: 4rem;
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 2rem;
+
+		&__message {
+			font-weight: 500;
+			font-size: 1.8rem;
+			max-width: 70%;
+			margin-bottom: 3rem;
+
+			@media (max-width: $r_mob_460) {
+				font-size: 1.6rem;
+			}
+		}
+
+		&__text {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			font-weight: 500;
+
+			& span {
+				display: block;
+				font-weight: 400;
+				margin-top: 0.6rem;
+			}
+		}
+	}
+
+	&__title {
+		font-weight: 500;
+		font-size: 3rem;
+
+		@media (max-width: $r_mob_600) {
+			font-size: 2.4rem;
+		}
+
+		@media (max-width: $r_mob_500) {
+			font-size: 2.2rem;
+		}
+
+		@media (max-width: $r_mob_460) {
+			font-size: 2rem;
+		}
+	}
+
+	&__close {
+		font-weight: 500;
+		font-size: 5rem;
+		cursor: pointer;
+
+		@media (max-width: $r_mob_600) {
+			font-size: 4rem;
+		}
+
+		@media (max-width: $r_mob_500) {
+			font-size: 3.6rem;
+		}
+
+		@media (max-width: $r_mob_460) {
+			font-size: 3.2rem;
+		}
 	}
 }
 
