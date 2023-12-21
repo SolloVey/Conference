@@ -1183,12 +1183,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 100;
 
-	&__body {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
 	&__content {
 		width: 80%;
 		background-color: $text-color;
