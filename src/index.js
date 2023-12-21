@@ -248,7 +248,7 @@ function showPopup() {
 
 function closePopup(e) {
 	if (
-		e.target.classList.contains('popup') ||
+		e.target.classList.contains('popup__body') ||
 		e.target.classList.contains('popup__close')
 	) {
 		styleNonePopup();
