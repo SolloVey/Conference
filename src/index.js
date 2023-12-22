@@ -48,7 +48,7 @@ const body = document.querySelector('body');
 const btnBurger = document.querySelector('.header__burger');
 const navList = document.querySelector('.nav');
 const navBtn = document.querySelector('.nav__btn');
-const arrowLink = document.querySelector('.promo__arrow');
+const promoBtn = document.querySelector('.btn__promo');
 const elementDateYear = document.querySelector('.logo-text__date');
 const date = new Date().toISOString();
 const currentDate = getDate(date);
@@ -58,8 +58,6 @@ const inputName = document.querySelector('.form-name');
 const inputEmail = document.querySelector('.form-email');
 const inputText = document.querySelector('.form-text');
 const popup = document.querySelector('.popup');
-// const popupContent = document.querySelector('.popup__content');
-// const closePopupBtn = document.querySelector('.popup__close');
 const popupInnerName = document.querySelector('.popup__inner__text_name');
 const popupInnerEmail = document.querySelector('.popup__inner__text_email');
 const popupInnerMessage = document.querySelector('.popup__inner__text_message');
@@ -220,8 +218,6 @@ function submitForm(e) {
 
 		request();
 		resetInputs();
-		// console.log(data.name);
-
 		showPopup();
 	} else {
 		console.log('Form NOT validate!');
@@ -235,11 +231,8 @@ function styleNonePopup() {
 }
 
 function showPopup() {
-	// popupInnerName.innerText = `Ваше имя: ${data.name}`;
 	popupInnerName.innerText = ` ${data.name}`;
-	// popupInnerEmail.innerText = `Ваш Email: ${data.email}`;
 	popupInnerEmail.innerText = ` ${data.email}`;
-	// popupInnerMessage.innerText = `Ваше сообщение: ${data.message}`;
 	popupInnerMessage.innerText = ` ${data.message}`;
 
 	popup.style.display = 'block';
@@ -260,7 +253,7 @@ swiperPrev.addEventListener('click', () => swiper.slidePrev());
 swiperNext.addEventListener('click', () => swiper.slideNext());
 btnBurger.addEventListener('click', showBurgerMenu);
 navBtn.addEventListener('click', onMenuLinkClick);
-arrowLink.addEventListener('click', onMenuLinkClick);
+promoBtn.addEventListener('click', onMenuLinkClick);
 document.addEventListener('keydown', escapeDown);
 form.addEventListener('submit', submitForm);
 window.addEventListener('click', closePopup);
