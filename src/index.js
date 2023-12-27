@@ -41,14 +41,16 @@ const swiper = new Swiper('.swiper', {
 
 const swiperPrev = document.querySelector('#swiperPrev');
 const swiperNext = document.querySelector('#swiperNext');
-const linksMenu = document.querySelectorAll(
-	'.nav__list__item__link[data-goto]'
-);
+const linksMenu = document.querySelectorAll('[data-goto]');
 const body = document.querySelector('body');
+const slider = document.querySelector('.slider');
+const feedback = document.querySelector('.feedback');
+const footer = document.querySelector('.footer');
 const btnBurger = document.querySelector('.header__burger');
 const navList = document.querySelector('.nav');
 const navBtn = document.querySelector('.nav__btn');
 const promoBtn = document.querySelector('.btn__promo');
+const promoArrowBtn = document.querySelector('.promo__arrow');
 const elementDateYear = document.querySelector('.logo-text__date');
 const date = new Date().toISOString();
 const currentDate = getDate(date);
@@ -72,6 +74,7 @@ if (linksMenu.length > 0) {
 
 function onMenuLinkClick(event) {
 	event.preventDefault();
+	showAllBlocks();
 
 	const linkMenu = event.target;
 	const gotoBlock = document.querySelector(linkMenu.dataset.goto);
@@ -123,6 +126,14 @@ function getDate(date) {
 (function (year) {
 	elementDateYear.innerHTML = `${year}`;
 })(currentDate.year);
+
+// Показать все блоки
+function showAllBlocks() {
+	slider.classList.add('_active');
+	feedback.classList.add('_active');
+	footer.classList.add('_active');
+	promoArrowBtn.classList.add('none');
+}
 
 // Валидация полей ввода формы
 class Request {
@@ -254,6 +265,7 @@ swiperNext.addEventListener('click', () => swiper.slideNext());
 btnBurger.addEventListener('click', showBurgerMenu);
 navBtn.addEventListener('click', onMenuLinkClick);
 promoBtn.addEventListener('click', onMenuLinkClick);
+promoArrowBtn.addEventListener('click', showAllBlocks, onMenuLinkClick);
 document.addEventListener('keydown', escapeDown);
 form.addEventListener('submit', submitForm);
 window.addEventListener('click', closePopup);

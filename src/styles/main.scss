@@ -39,6 +39,10 @@ body {
 	}
 }
 
+.none {
+	display: none !important;
+}
+
 .container {
 	max-width: $container-width;
 	margin: 0 auto;
@@ -46,6 +50,7 @@ body {
 }
 
 .btn {
+	display: inline-block;
 	text-align: center;
 	font-size: 1.4rem;
 	font-weight: 700;
@@ -416,8 +421,10 @@ body {
 
 // PROMO
 .promo {
+	position: relative;
 	background-color: $background-color;
 	padding: 7rem 0rem 8.2rem;
+	z-index: 3;
 
 	@media (max-width: $r_tab) {
 		padding: 8.3rem 0rem 3.8rem;
@@ -806,6 +813,10 @@ body {
 
 // SLIDER
 .slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(0px, -100%);
 	background-color: $text-color;
 	padding-top: 7.9rem;
 	padding-bottom: 4.2rem;
@@ -837,6 +848,11 @@ body {
 			font-size: 4rem;
 			margin-bottom: 25px;
 		}
+	}
+
+	&._active {
+		position: relative;
+		transform: translate(0px, 0px);
 	}
 }
 
@@ -1004,6 +1020,10 @@ body {
 
 //FEEDBACK
 .feedback {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(0px, -100%);
 	background-color: $background-color;
 	padding: 7rem 0rem 8.4rem;
 
@@ -1013,6 +1033,11 @@ body {
 
 	@media (max-width: $r_mob_500) {
 		padding: 3rem 0rem 6.7rem;
+	}
+
+	&._active {
+		position: relative;
+		transform: translate(0px, 0px);
 	}
 }
 
@@ -1135,6 +1160,10 @@ body {
 
 //FOOTER
 .footer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(0px, -100%);
 	background-color: $background-color;
 	padding: 2.2rem 0rem 16.1rem;
 
@@ -1169,6 +1198,11 @@ body {
 	&__legal-information {
 		font-size: clamp(1.6rem, 1.53rem + 0.35vw, 1.8rem);
 		text-decoration: underline !important;
+	}
+
+	&._active {
+		position: relative;
+		transform: translate(0px, 0px);
 	}
 }
 
