@@ -50,7 +50,7 @@ const btnBurger = document.querySelector('.header__burger');
 const navList = document.querySelector('.nav');
 const navBtn = document.querySelector('.nav__btn');
 const promoBtn = document.querySelector('.btn__promo');
-const promoArrowBtn = document.querySelector('.promo__arrow');
+const promoArrowBtn = document.querySelector('.promo__btn');
 const elementDateYear = document.querySelector('.logo-text__date');
 const date = new Date().toISOString();
 const currentDate = getDate(date);
@@ -262,6 +262,7 @@ function closePopup(e) {
 // Вынос навигации слайдера за пределы контейнера Swiper
 swiperPrev.addEventListener('click', () => swiper.slidePrev());
 swiperNext.addEventListener('click', () => swiper.slideNext());
+// Listeners
 btnBurger.addEventListener('click', showBurgerMenu);
 navBtn.addEventListener('click', onMenuLinkClick);
 promoBtn.addEventListener('click', onMenuLinkClick);

@@ -423,7 +423,7 @@ body {
 .promo {
 	position: relative;
 	background-color: $background-color;
-	padding: 7rem 0rem 8.2rem;
+	padding: 7rem 0rem 2rem;
 	z-index: 3;
 
 	@media (max-width: $r_tab) {
@@ -769,12 +769,11 @@ body {
 	&__description {
 		max-width: 59rem;
 		padding-left: 9.6rem;
-		margin-bottom: 4.4rem;
+		margin-bottom: 6.4rem;
 
 		@media (max-width: $r_tab) {
 			max-width: 56rem;
 			padding-left: 5.4rem;
-			margin-bottom: 6.4rem;
 		}
 
 		@media (max-width: $r_mob_500) {
@@ -798,16 +797,33 @@ body {
 		}
 	}
 
-	&__arrow {
+	&__btn {
 		position: relative;
-		top: 0px;
-		display: block;
 		margin: 0 auto;
 		width: 8.7rem;
+		cursor: pointer;
+	}
+
+	&__arrow {
+		position: relative;
+		display: block;
 		height: 3rem;
 		background-image: url('../images/main/svg/arrow.svg');
-		cursor: pointer;
-		animation: arrowMovement 1.6s infinite ease-out;
+		opacity: 0;
+	}
+
+	&__arrow:nth-child(2) {
+		animation: arrowShowSecond 1.5s infinite ease-out;
+	}
+
+	&__arrow:first-child {
+		animation: arrowShowFirst 1.5s infinite ease-out;
+		top: 18px;
+	}
+
+	&__arrow:last-child {
+		animation: arrowShowThird 1.5s infinite ease-out;
+		top: -18px;
 	}
 }
 
@@ -1294,15 +1310,37 @@ body {
 }
 
 // ANIMATIONS
-@keyframes arrowMovement {
+@keyframes arrowShowFirst {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes arrowShowSecond {
 	0% {
 		opacity: 0;
-		top: 0px;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes arrowShowThird {
+	0% {
+		opacity: 0;
 	}
 
 	100% {
 		opacity: 1;
-		top: 30px;
 	}
 }
 
